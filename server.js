@@ -1,6 +1,7 @@
 // import express from 'express' // ES 6 modules
 import express from 'express'   // CommonJS
 import cors from 'cors'
+import './db-connect.js'
 const app = express() // generates me an API (instance)
 
 app.use( cors() )
