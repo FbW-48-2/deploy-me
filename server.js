@@ -2,6 +2,7 @@ import './config.js' // LOAD env before we do ANYTING else
 import express from 'express'   // CommonJS
 import cors from 'cors'
 import './db-connect.js'
+import Teacher from './models/Teacher.js'
 
 const app = express() // generates me an API (instance)
 
@@ -17,14 +18,17 @@ app.get("/env", (req, res) => {
   })
 })
 
-app.get("/teachers", (request, response) => {
-  response.json( arrTeachers )
+app.get("/teachers", async (req, res) => {
+
+  const teachersDb = await Teacher.find()
+  res.json( teachersDb )
+
 })
 
-app.get("/teachers/:id", (request, response) => {
-  const { id } = request.params
-  const teacherFound = arrTeachers.find( teacher => teacher.id === id )  
-  response.json( teacherFound )
+app.get("/teachers/:id", async (req, res) => {
+  const { id } = req.params
+  const teacherFound = await Teacher.findById( id )  
+  res.json( teacherFound )
 })
 
 const PORT = 5000

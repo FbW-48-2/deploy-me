@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 
-const API_URL = 'http://localhost:5000/teachers'
+const API_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000"
+
+console.log( { API_URL } )
 
 function App() {
 
@@ -14,7 +16,7 @@ function App() {
   const loadTeachers = (e) => {
 
     // GET call to backend to fetch all teachers
-    fetch( API_URL )
+    fetch( `${API_URL}/teachers` )
     .then(res => res.json())
     .then(teachersApi => {
       console.log(teachersApi)
