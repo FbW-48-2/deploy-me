@@ -7,4 +7,4 @@ const TeacherSchema = new Schema({
 
 const Teacher = model("Teacher", TeacherSchema)
 
-module.exports = Teacher
+export default Teacher

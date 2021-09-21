@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
-const MONGO_URI = "mongodb://localhost/teachers-db-fbw-48?retryWrites=true&w=majority"
+// BAAAD!
+// const MONGO_URI = "mongodb://localhost/teachers-db-fbw48?retryWrites=true&w=majority"
+
+// SENSITIVIE INFORMATION ! => OUTSIDE OF CODE!!!
+const MONGO_URI = process.env.MONGO_URI
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true, 

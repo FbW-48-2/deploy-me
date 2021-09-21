@@ -1,26 +1,23 @@
-// import express from 'express' // ES 6 modules
+import './config.js' // LOAD env before we do ANYTING else
 import express from 'express'   // CommonJS
 import cors from 'cors'
 import './db-connect.js'
+
 const app = express() // generates me an API (instance)
 
 app.use( cors() )
-
-// FAKE DATABASE
-const arrTeachers = [
-  { id: "1", name: "Alejandra" },
-  { id: "2", name: "Ghassan" },
-  { id: "3", name: "Mansour" },
-  { id: "4", name: "Rob" },
-  { id: "5", name: "Vasilis" },
-]
 
 app.get("/", (request, response) => {
   response.json({ message: "Hello. Bring me to the web, please!"})
 })
 
+app.get("/env", (req, res) => {
+  res.json({
+    MONGO_URI: process.env.MONGO_URI
+  })
+})
+
 app.get("/teachers", (request, response) => {
-  console.log("You want teachers, right??????")
   response.json( arrTeachers )
 })
 
